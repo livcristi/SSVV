@@ -25,13 +25,14 @@ public class Service {
     public Iterable<Nota> findAllNote() { return notaXmlRepo.findAll(); }
 
     public int saveStudent(String id, String nume, int grupa) {
+        // Fixed the method error: returning null on error was treated as added value
         Student student = new Student(id, nume, grupa);
         Student result = studentXmlRepo.save(student);
 
         if (result == null) {
-            return 1;
+            return 0;
         }
-        return 0;
+        return 1;
     }
 
     public int saveTema(String id, String descriere, int deadline, int startline) {
