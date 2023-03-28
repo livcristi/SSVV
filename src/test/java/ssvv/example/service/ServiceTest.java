@@ -36,11 +36,7 @@ class ServiceTest
     {
         try (FileWriter writer = new FileWriter("test_student.xml"))
         {
-            writer.write("""
-                    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-                    <Entitati>
-                    </Entitati>
-                    """);
+            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + "<Entitati>\n" + "</Entitati>\n");
         } catch (IOException e)
         {
         }
