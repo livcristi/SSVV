@@ -1,6 +1,5 @@
 package ssvv.example.service;
 
-import jdk.jfr.ValueDescriptor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -44,19 +43,37 @@ public class WhiteBoxServiceTest {
     }
 
     @Test
-    void saveTema_shouldReturn0WhenIdNull(){
-        int actualResult = service.saveTema(null, "descriere", 1, 1);
+    void saveTema() {
+        int actualResult = service.saveTema("1", "descriere", 5, 2);
 
-        assertEquals(0,actualResult);
+        assertEquals(1, actualResult);
     }
 
     @Test
-    void saveTema_shouldReturn0WhenDescriereNull(){
-        int actualResult = service.saveTema("1", null, 1, 1);
+    void saveTema_shouldReturn0WhenIdNull() {
+        int actualResult = service.saveTema(null, "descriere", 1, 1);
 
-        assertEquals(0,actualResult);
+        assertEquals(0, actualResult);
     }
 
+    @Test
+    void saveTema_shouldReturn0WhenDescriereNull() {
+        int actualResult = service.saveTema("1", null, 1, 1);
 
+        assertEquals(0, actualResult);
+    }
 
+    @Test
+    void saveTema_shouldReturn0WhenDeadlineLessThanStartline() {
+        int actualResult = service.saveTema("1", "descriere", 1, 3);
+
+        assertEquals(0, actualResult);
+    }
+
+    @Test
+    void saveTema_shouldReturn0WhenStartlineOutOfBound() {
+        int actualResult = service.saveTema("1", "descriere", 1, 16);
+
+        assertEquals(0, actualResult);
+    }
 }
